@@ -1,0 +1,9 @@
+DROP DATABASE IF EXISTS acctmgmtdb;
+DROP USER IF EXISTS `acctmgmtadmin`@`%`;
+DROP USER IF EXISTS `acctmgmtapp`@`%`;
+CREATE DATABASE IF NOT EXISTS acctmgmtdb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS `acctmgmtadmin`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `acctmgmtdb`.* TO `acctmgmtadmin`@`%`;
+CREATE USER IF NOT EXISTS `acctmgmtapp`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `acctmgmtdb`.* TO `acctmgmtapp`@`%`;
+FLUSH PRIVILEGES;
